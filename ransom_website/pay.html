@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attention!</title>
+    <style>
+        body {
+            background-color: #1a1a1a; /* Sfondo scuro */
+            color: #EB107A; /* Colore del testo principale */
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            color: #DA3B8A; /* Colore del titolo */
+            font-size: 48px;
+            text-shadow: 2px 2px 10px rgba(218, 59, 138, 0.7);
+        }
+        .warning {
+            color: #FF0000; /* Colore del testo di warning */
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .timer {
+            font-size: 36px;
+            font-weight: bold;
+        }
+        form {
+            margin-top: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"] {
+            width: 50%;
+            height: 30px;
+            font-size: 18px;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        input[type="button"] {
+            background-color: #DA3B8A; /* Colore del pulsante */
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+        input[type="button"]:hover {
+            background-color: #c72a6b; /* Colore del pulsante al passaggio del mouse */
+        }
+    </style>
+</head>
+<body>
+    <h1>Attention!</h1>
+    <p class="warning">Enter your Ransom ID and cryptocurrency payment to proceed.</p>
+    <p class="timer" id="timer">Time remaining: 24:00:00</p>
+    <form>
+        <label>Ransom ID:</label>
+        <input type="text" name="ransom_id" required><br>
+        <label>Cryptocurrency wallet address:</label>
+        <input type="text" name="wallet_address" required><br>
+        <label>Amount of cryptocurrency:</label>
+        <input type="text" name="amount" required><br>
+        <input type="button" value="Pay" onclick="window.location.href='decrypt.html'">
+    </form>
+    <p class="warning">Do not attempt to close this page or interrupt the payment. The consequences will be severe.</p>
+
+    <script>
+        let timer = 86400; // 24 ore
+        let interval = setInterval(() => {
+            let hours = Math.floor(timer / 3600);
+            let minutes = Math.floor((timer % 3600) / 60);
+            let seconds = timer % 60;
+            document.getElementById("timer").innerHTML = `Time remaining: ${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+            timer--;
+            if (timer < 0) {
+                clearInterval(interval);
+                document.getElementById("timer").innerHTML = "Time's up!";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

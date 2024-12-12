@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BR34CH BR4TS VICTIM</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: black;
+            color: #EB107A;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        h1 {
+            font-size: 3em;
+            margin: 0.5em;
+        }
+        p {
+            font-size: 1.5em;
+            margin: 0.5em;
+        }
+        .ransom-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+        .ransom-details {
+            background: #FBCBE2;
+            padding: 20px;
+            border: 2px solid #EB107A;
+            width: 80%;
+            max-width: 500px;
+            margin: 20px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;    
+        }
+        .payment-link {
+            color: #EB107A;
+            text-decoration: underline;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .warning {
+            color: orange;
+            font-weight: bold;
+        }
+        .side-image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .side-image {
+            max-width: 500px;
+            max-height: 500px;
+            width: auto;
+            height: auto;
+        }
+        .timer {
+            font-size: 2em;
+            color: #EB107A;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>YOUR FILES HAVE BEEN ENCRYPTED!</h1>
+    <p>All your files are now inaccessible. To regain access, you must pay the ransom.</p>
+    
+    <div class="timer" id="timer">Time remaining: 24:00:00</div>
+    
+    <div class="ransom-container">
+        <div class="side-image-container">
+            <img src="underware.png" alt="Image 1" class="side-image">
+        </div>
+        <div class="ransom-details">
+            <p>Amount to pay: <strong>3000$ in BTC</strong></p>
+            <p>Send the payment to the following wallet:</p>
+            <p class="payment-link">1ABC23XYZ456DEF789GHI012JKL34MNO56PQR78</p>
+            <p>To proceed with the payment, visit the following link:</p>
+            <p class="payment-link"><a href="pay.html" target="_blank">CLICK HERE!</a></p>
+        </div>
+        <div class="side-image-container">
+            <img src="underware.png" alt="Image 2" class="side-image">
+        </div>
+    </div>
+    <p class="warning">WARNING: If payment is not made within 24 hours, all your files will be permanently deleted!</p>
+
+    <script>
+        let timer = 86400; // 24 ore in secondi
+        let interval = setInterval(() => {
+            let hours = Math.floor(timer / 3600);
+            let minutes = Math.floor((timer % 3600) / 60);
+            let seconds = timer % 60;
+            document.getElementById("timer").innerHTML = `Time remaining: ${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+            timer--;
+            if (timer < 0) {
+                clearInterval(interval);
+                document.getElementById("timer").innerHTML = "Time's up!";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
