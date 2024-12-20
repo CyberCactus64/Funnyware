@@ -1,41 +1,36 @@
-# Ransomware Project
+# Ransomware written in Go, for educational purposes
 
 ## 📜 Overview
-This project is a ransomware written in **Go** (Golang), designed to encrypt files using **AES-256 encryption**
-
+A working ransomware written in **Go** (Golang), designed to encrypt all the user files using **AES-256 encryption**
 
 ### ⚠️ Disclaimer
-This project is intended for **educational purposes only** to help understand the mechanisms of ransomwares. Misuse of this code for malicious purposes is illegal and unethical. Use responsibly.
+This project is intended for **educational purposes only** to help understand the mechanisms of ransomwares. 
+Misuse of this code for malicious purposes is illegal and unethical!
+Test this code only on a virtual machine or on devices that do not belong to others.
 
+---
 
 ## 🚀 Features
 1. **File Encryption with AES-256**
-   - Encrypts all files in target directories using the Advanced Encryption Standard with a 256-bit key.
+   - Encrypts all files in target directories (/Users for Windows systems and /home for Linux systems) using AES-256.
 
-2. **Desktop Background Change**
-   - Automatically changes the victim's desktop wallpaper to a custom image.
+2. **Encryption Key Generation**
+   - Generates a unique AES-256 encryption key for each victim.
+   - The decryption key is then made available only through a payment, as part of the ransom process.
+   - The key is sent to a remote server, ensuring it’s inaccessible without fulfilling the ransom demands.
 
 3. **Ransom Note Generation**
    - Creates a text file with details on:
-     - Instructions to download and install Tor Browser.
-     - Navigating to a specific .onion site for payment and decryption software.
+     - Threats and instructions to install the Tor Browser.
+     - A reference to a specific .onion site (for the proof of concept, a normal webpage is used) for payment and decryption software.
 
+---
 
 ## 🔧 Technical Details
 ### File Encryption
 - **Algorithm:** AES-256 in GCM mode
-- **Key Handling:** A unique key is generated for each instance, stored securely for decryption upon payment.
-- **Targets:** Recursively scans and encrypts files in user-defined directories (e.g., `/home/user` on Linux or `C:\Users` on Windows).
+- **Targets:** Recursively scans and encrypts files in specific directories (`/home/user` on Linux and `C:\Users` on Windows, for example).
 - **Exclusions:** Skips not important folders and critical system files to avoid rendering the machine unbootable.
-
-### Desktop Background Change
-- Replaces the victim's current wallpaper with a custom image provided in the payload.
-
-### Ransom Note
-- Automatically generates a file named `READ_ME.txt` or equivalent in Desktop
-- Includes:
-  - Steps to download Tor Browser.
-  - The onion URL for the ransom page (with instructions for payment and decryption)
 
 ### Written in Go
 - **Why Go?**
@@ -43,15 +38,15 @@ This project is intended for **educational purposes only** to help understand th
   - Strong support for concurrency and networking.
   - Lightweight binaries for easier distribution.
 
+---
 
 ## 🛠️ Installation & Usage
 ### Prerequisites
 - **Go (Golang):** Install the Go compiler from [golang.org](https://golang.org).
 - **Dependencies:**
   - Standard Go libraries.
-  - To change background (multi-platform): https://github.com/reujab/wallpaper (```go get -u github.com/reujab/wallpaper```)
 - **External Tools:**
- - To change the software icon in Windows: https://github.com/tc-hib/go-winres (```go install github.com/tc-hib/go-winres@latest```)
+ - To change the software icon in Windows: https://github.com/tc-hib/go-winres (```go install github.com/tc-hib/go-winres@latest```):
    ```bash 
    go-winres simply --icon icon.png
    go build
@@ -60,24 +55,26 @@ This project is intended for **educational purposes only** to help understand th
 ### Build Instructions
 1. Clone the repository:
    ```bash
-   git clone https://github.com/CyberCactus64/under-ware.git
-   cd ransomware-project
+   git clone https://github.com/CyberCactus64/funny-ware.git
    ```
 2. Build the encryptor:
    ```bash
-   cd underware
+   cd funnyware
    go build -ldflags="-H windowsgui" -o encryptor.exe
    go build -ldflags="-H windowsgui" -ldflags "-X main.Publisher=Mojang" -o Minecraft.exe
    ```
 2. Build the decryptor:
    ```bash
-   cd underware-savior
+   cd funnyware-savior
    go build -ldflags="-H windowsgui" -ldflags "-X main.Publisher=Microsoft" -o HelpMe.exe
    ```
 
+---
 
 ## 🛡️ Legal and Ethical Use
-This project must only be used for **research** and **cybersecurity training**. Unauthorized deployment of this program is strictly prohibited and punishable under applicable laws.
+This project must only be used for **research** and **cybersecurity training**. 
+Unauthorized deployment of this program is strictly prohibited and punishable under applicable laws.
+I am not responsible for any malicious use of this project. This code is intended solely for educational purposes.
 
 ---
 
@@ -85,7 +82,3 @@ This project must only be used for **research** and **cybersecurity training**. 
 For questions or collaborations, please reach out to:
 - Email: edoardo.enricomaria.fornasier@gmail.com
 - GitHub: [your_username](https://github.com/CyberCactus64)
-
----
-
-**Stay ethical and use this code responsibly!**
