@@ -23,7 +23,7 @@ Test this code only on a virtual machine or on devices that do not belong to oth
    - Creates a text file with details on:
      - Threats and instructions to install the Tor Browser.
      - A reference to a specific .onion site (for the proof of concept, a normal webpage is used) for payment and decryption software.
-
+   
 ---
 
 ## 🔧 Technical Details
@@ -47,10 +47,6 @@ Test this code only on a virtual machine or on devices that do not belong to oth
   - Standard Go libraries.
 - **External Tools:**
  - To change the software icon in Windows: https://github.com/tc-hib/go-winres (```go install github.com/tc-hib/go-winres@latest```):
-   ```bash 
-   go-winres simply --icon icon.png
-   go build
-   ```
 
 ### Build Instructions
 1. Clone the repository:
@@ -59,15 +55,22 @@ Test this code only on a virtual machine or on devices that do not belong to oth
    ```
 2. Build the encryptor:
    ```bash
-   cd funnyware
-   go build -ldflags="-H windowsgui" -o encryptor.exe
-   go build -ldflags="-H windowsgui" -ldflags "-X main.Publisher=Mojang" -o Minecraft.exe
+   cd Encryptor
+   go-winres simply --icon icon.png
+   go build -ldflags="-H windowsgui" -o Minecraft.exe
    ```
 2. Build the decryptor:
    ```bash
-   cd funnyware-savior
-   go build -ldflags="-H windowsgui" -ldflags "-X main.Publisher=Microsoft" -o HelpMe.exe
+   cd Decryptor
+   go build -ldflags="-H windowsgui" -o HelpMe.exe
    ```
+
+---
+
+## ✨ FUTURE UPDATES:
+ - Function to generate a random 32-byte encryption key, to write in the ransom note.
+ - Function to securely transmit the encryption key to an external server.
+ - Enhance code obfuscation techniques to bypass Microsoft defender.
 
 ---
 
@@ -81,4 +84,4 @@ I am not responsible for any malicious use of this project. This code is intende
 ### 📫 Contact
 For questions or collaborations, please reach out to:
 - Email: edoardo.enricomaria.fornasier@gmail.com
-- GitHub: [your_username](https://github.com/CyberCactus64)
+- GitHub: [CyberCactus64](https://github.com/CyberCactus64)
