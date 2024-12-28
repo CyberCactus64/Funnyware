@@ -15,15 +15,16 @@ Test this code only on a virtual machine or on devices that do not belong to oth
    - Encrypts all files in target directories (/Users for Windows systems and /home for Linux systems) using AES-256.
 
 2. **Encryption Key Generation**
-   - Generates a unique AES-256 encryption key for each victim.
-   - The decryption key is then made available only through a payment, as part of the ransom process.
+   - Generates a unique AES-256 encryption key for each victim (**future update**).
    - The key is sent to a remote server, ensuring it’s inaccessible without fulfilling the ransom demands.
+   - The decryption key is then made available only through a payment, as part of the ransom process.
 
 3. **Ransom Note Generation**
    - Creates a text file with details on:
      - Threats and instructions to install the Tor Browser.
      - A reference to a specific .onion site (for the proof of concept, a normal webpage is used) for payment and decryption software.
-   
+     - Ransom ID to specify during the payment (**future update**)
+
 ---
 
 ## 🔧 Technical Details
@@ -37,6 +38,9 @@ Test this code only on a virtual machine or on devices that do not belong to oth
   - Cross-platform compatibility.
   - Strong support for concurrency and networking.
   - Lightweight binaries for easier distribution.
+
+### Proof-of-concept Website
+ - To emulate the complete process, from the download to the payment for the decryptor, the two websites have been hosted on: [netfily.com](https://app.netlify.com)
 
 ---
 
